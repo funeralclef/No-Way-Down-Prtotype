@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://tests/HybridWorldVisualReview.cs" id="1_review"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_review"]
+sky_top_color = Color(0.018, 0.035, 0.055, 1)
+sky_horizon_color = Color(0.11, 0.19, 0.24, 1)
+ground_bottom_color = Color(0.01, 0.015, 0.02, 1)
+ground_horizon_color = Color(0.08, 0.12, 0.16, 1)
+
+[sub_resource type="Sky" id="Sky_review"]
+sky_material = SubResource("SkyMaterial_review")
+
+[sub_resource type="Environment" id="Environment_review"]
+background_mode = 2
+sky = SubResource("Sky_review")
+ambient_light_source = 3
+ambient_light_color = Color(0.5, 0.68, 0.82, 1)
+ambient_light_energy = 0.75
+
+[node name="HybridWorldVisualReview" type="Node3D"]
+script = ExtResource("1_review")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_review")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -28, 0)
+light_color = Color(0.82, 0.92, 1, 1)
+light_energy = 1.35
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+fov = 52.0
+far = 420.0

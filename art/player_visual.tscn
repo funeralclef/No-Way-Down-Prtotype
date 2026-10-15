@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c4frarxnp58ld"]
+
+[ext_resource type="Script" path="res://ModelVisualRoot.cs" id="1_contract"]
+[ext_resource type="PackedScene" path="res://art/runner_model.tscn" id="2_model"]
+
+[node name="PlayerVisual" type="Node3D" unique_id=646996132]
+script = ExtResource("1_contract")
+TintMaterialName = "body"
+RequireTintTarget = true
+
+[node name="Model" parent="." unique_id=699853685 instance=ExtResource("2_model")]

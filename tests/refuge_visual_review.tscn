@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://refuge.tscn" id="1_refuge"]
+[ext_resource type="Script" path="res://tests/RefugeVisualReview.cs" id="2_review"]
+
+[node name="RefugeVisualReview" instance=ExtResource("1_refuge")]
+
+[node name="VisualReviewDriver" type="Node" parent="."]
+script = ExtResource("2_review")

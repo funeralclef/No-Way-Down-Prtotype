@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://WorldChunk.cs" id="1_chunk"]
+
+[sub_resource type="StandardMaterial3D" id="Material_connector"]
+albedo_color = Color(0.16, 0.25, 0.29, 1)
+metallic = 0.48
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="Mesh_connector"]
+material = SubResource("Material_connector")
+size = Vector3(22, 0.4, 18)
+
+[sub_resource type="BoxShape3D" id="Shape_connector"]
+size = Vector3(22, 0.4, 18)
+
+[node name="ReferenceConnectorChunk" type="Node3D"]
+script = ExtResource("1_chunk")
+ContentId = "reference_connector"
+Kind = 1
+Theme = 1
+WidthClass = 2
+EntrySocket = 2
+ExitSocket = 3
+Tags = 122
+PlayableSize = Vector3(22, 6, 18)
+CameraViewSize = 28.0
+PressureSpeedMultiplier = 0.9
+
+[node name="Entry" type="Marker3D" parent="."]
+position = Vector3(0, 0, 9)
+
+[node name="Exit" type="Marker3D" parent="."]
+position = Vector3(0, 0, -9)
+
+[node name="PlayableBounds" type="Marker3D" parent="."]
+position = Vector3(0, 3, 0)
+
+[node name="ObstacleSlots" type="Node3D" parent="."]
+
+[node name="Transition" type="Marker3D" parent="ObstacleSlots"]
+position = Vector3(0, 0, 0)
+metadata/max_footprint = 1
+metadata/required_obstacle_tags = 2
+metadata/spawn_chance = 0.65
+
+[node name="EnemySpawnAreas" type="Node3D" parent="."]
+
+[node name="ConnectorLane" type="Marker3D" parent="EnemySpawnAreas"]
+position = Vector3(0, 1, -2)
+
+[node name="Metadata" type="Node" parent="."]
+
+[node name="Camera" type="Node" parent="Metadata"]
+
+[node name="Pressure" type="Node" parent="Metadata"]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="ConnectorVisual" type="MeshInstance3D" parent="Geometry"]
+position = Vector3(0, -0.2, 0)
+mesh = SubResource("Mesh_connector")
+
+[node name="ConnectorCollision" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, -0.2, 0)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/ConnectorCollision"]
+shape = SubResource("Shape_connector")

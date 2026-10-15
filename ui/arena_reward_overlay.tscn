@@ -1,0 +1,287 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://ArenaRewardOverlay.cs" id="1_script"]
+[ext_resource type="FontFile" path="res://fonts/Montserrat-Medium.ttf" id="2_font"]
+
+[sub_resource type="Theme" id="Theme_reward"]
+default_font = ExtResource("2_font")
+default_font_size = 16
+
+[node name="ArenaRewardOverlay" type="Control" unique_id=1010068453]
+process_mode = 3
+visible = false
+z_index = 225
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("Theme_reward")
+script = ExtResource("1_script")
+
+[node name="ArenaRewardVeil" type="ColorRect" parent="." unique_id=1816115526]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RewardSafeFrame" type="MarginContainer" parent="." unique_id=649900741]
+layout_mode = 0
+mouse_filter = 2
+
+[node name="RewardContent" type="VBoxContainer" parent="RewardSafeFrame" unique_id=861355687]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="SignalLine" type="ColorRect" parent="RewardSafeFrame/RewardContent" unique_id=1584638910]
+custom_minimum_size = Vector2(1, 2)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.25, 0.84, 1, 1)
+
+[node name="Meta" type="HBoxContainer" parent="RewardSafeFrame/RewardContent" unique_id=1814431465]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Arena" type="Label" parent="RewardSafeFrame/RewardContent/Meta" unique_id=1120965814]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ARENA 01 CLEARED"
+clip_text = true
+
+[node name="Tier" type="Label" parent="RewardSafeFrame/RewardContent/Meta" unique_id=272122951]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "IMPULSE // REROLL READY"
+horizontal_alignment = 2
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Heading" type="Label" parent="RewardSafeFrame/RewardContent" unique_id=409299515]
+layout_mode = 2
+text = "CHOOSE YOUR EDGE"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Subheading" type="Label" parent="RewardSafeFrame/RewardContent" unique_id=320046179]
+layout_mode = 2
+text = "ONE CHANGE NOW. A DIFFERENT RUN ABOVE."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="ChoiceCards" type="GridContainer" parent="RewardSafeFrame/RewardContent" unique_id=1364175068]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Choice1" type="Button" parent="RewardSafeFrame/RewardContent/ChoiceCards" unique_id=1095847123]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+
+[node name="Margin" type="MarginContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1" unique_id=1177837541]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 17
+
+[node name="Content" type="VBoxContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin" unique_id=1138441810]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Tier" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin/Content" unique_id=1155290002]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "IMPULSE"
+clip_text = true
+
+[node name="Title" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin/Content" unique_id=614871139]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "LIGHT FRAME"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Description" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin/Content" unique_id=2013133870]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "A SMALL CHANGE WITH AN IMMEDIATE EFFECT."
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 4
+
+[node name="Tags" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin/Content" unique_id=831489502]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SPEED · CONTROL"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Synergy" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice1/Margin/Content" unique_id=1236323867]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SYNERGY DETECTED"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
+
+[node name="Choice2" type="Button" parent="RewardSafeFrame/RewardContent/ChoiceCards" unique_id=351329088]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+
+[node name="Margin" type="MarginContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2" unique_id=448328583]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 17
+
+[node name="Content" type="VBoxContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin" unique_id=648344668]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Tier" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin/Content" unique_id=589646344]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "IMPULSE"
+clip_text = true
+
+[node name="Title" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin/Content" unique_id=775720396]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "LIGHT FRAME"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Description" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin/Content" unique_id=1380591132]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "A SMALL CHANGE WITH AN IMMEDIATE EFFECT."
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 4
+
+[node name="Tags" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin/Content" unique_id=600778433]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SPEED · CONTROL"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Synergy" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice2/Margin/Content" unique_id=1639048669]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SYNERGY DETECTED"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
+
+[node name="Choice3" type="Button" parent="RewardSafeFrame/RewardContent/ChoiceCards" unique_id=1228918468]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+
+[node name="Margin" type="MarginContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3" unique_id=1272075469]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 17
+
+[node name="Content" type="VBoxContainer" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin" unique_id=601791654]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Tier" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin/Content" unique_id=1014092957]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "IMPULSE"
+clip_text = true
+
+[node name="Title" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin/Content" unique_id=459734401]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "LIGHT FRAME"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Description" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin/Content" unique_id=1454285539]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "A SMALL CHANGE WITH AN IMMEDIATE EFFECT."
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 4
+
+[node name="Tags" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin/Content" unique_id=2038654464]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SPEED · CONTROL"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="Synergy" type="Label" parent="RewardSafeFrame/RewardContent/ChoiceCards/Choice3/Margin/Content" unique_id=1609268855]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+text = "SYNERGY DETECTED"
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 1
+
+[node name="Footer" type="HBoxContainer" parent="RewardSafeFrame/RewardContent" unique_id=779711502]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Step" type="Label" parent="RewardSafeFrame/RewardContent/Footer" unique_id=1226085659]
+custom_minimum_size = Vector2(150, 1)
+layout_mode = 2
+text = "01  REWARD    02  ROUTE"
+clip_text = true
+
+[node name="InputHint" type="Label" parent="RewardSafeFrame/RewardContent/Footer" unique_id=949070013]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "←  →  SELECT     A / ENTER  CONFIRM"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Reroll" type="Button" parent="RewardSafeFrame/RewardContent/Footer" unique_id=1088982028]
+custom_minimum_size = Vector2(142, 38)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "REROLL  [R / X]"
+

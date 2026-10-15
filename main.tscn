@@ -1,0 +1,624 @@
+[gd_scene format=3 uid="uid://2wap0283yk0r"]
+
+[ext_resource type="Script" uid="uid://b8dda1f5du5ff" path="res://Main.cs" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ceuu150fmggvr" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://defdm2qdva75q" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="FontFile" uid="uid://cyxhh7ddkn62q" path="res://fonts/Montserrat-Medium.ttf" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://irvxyfqgluas" path="res://ScoreLabel.cs" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://bdftf8desc2wm" path="res://MobileControls.cs" id="6_mobile"]
+[ext_resource type="Script" uid="uid://cgb3qhe186ito" path="res://MomentumOverlay.cs" id="7_momentum_overlay"]
+[ext_resource type="PackedScene" uid="uid://4x68hnxji0o5" path="res://ui/full_settings.tscn" id="9_82xsv"]
+[ext_resource type="PackedScene" uid="uid://khikfhp5i65t" path="res://ui/run_end_overlay.tscn" id="10_getpj"]
+[ext_resource type="Script" uid="uid://d2vfdc1lh1ndo" path="res://HealthHud.cs" id="12_health_hud"]
+[ext_resource type="PackedScene" uid="uid://k4j80ppvrhuj" path="res://ui/run_progress_hud.tscn" id="13_getpj"]
+[ext_resource type="Script" uid="uid://dx6xr4tv1rp62" path="res://RunPauseMenu.cs" id="13_ryguw"]
+[ext_resource type="Script" uid="uid://6yjv0oy1psj6" path="res://HomeMenuButton.cs" id="14_1u8w0"]
+[ext_resource type="PackedScene" path="res://ui/arena_reward_overlay.tscn" id="14_d13ii"]
+[ext_resource type="PackedScene" uid="uid://d22dd7ux25o4y" path="res://world/player_jump_trajectory.tscn" id="15_82xsv"]
+[ext_resource type="Script" uid="uid://bkm7mnfgncuki" path="res://CombatFeedbackDirector.cs" id="16_0odxb"]
+[ext_resource type="Script" uid="uid://brlrciwaekadq" path="res://RunHudDirector.cs" id="18_a6jrf"]
+[ext_resource type="Script" uid="uid://2mhni8fmette" path="res://RunVisualAtmosphere.cs" id="19_xuqvo"]
+[ext_resource type="Script" uid="uid://u5p66aj2iuj8" path="res://ProceduralWorld.cs" id="20_qsp4k"]
+[ext_resource type="Resource" path="res://world/default_world_generation_settings.tres" id="20_ryguw"]
+[ext_resource type="Script" uid="uid://c0a1af2mabbfp" path="res://AbyssPressureFront.cs" id="21_kq58d"]
+[ext_resource type="PackedScene" uid="uid://b75gahg7i5tgr" path="res://world/ground_vitals_indicator.tscn" id="22_seu75"]
+[ext_resource type="Script" uid="uid://c24rocmfxkn5x" path="res://EncounterDirector.cs" id="23_encounter"]
+[ext_resource type="Resource" path="res://world/default_encounter_settings.tres" id="24_encounter_settings"]
+[ext_resource type="Resource" path="res://world/content/reference_catalog.tres" id="25_world_catalog"]
+
+[sub_resource type="Theme" id="Theme_pfwfe"]
+default_font = ExtResource("4_1bvp3")
+default_font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_score"]
+bg_color = Color(0.035, 0.05, 0.075, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.43, 0.06, 0.68)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_divider"]
+color = Color(1, 1, 1, 0.14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_location"]
+bg_color = Color(0.035, 0.05, 0.075, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.3)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.22)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_momentum"]
+bg_color = Color(0.035, 0.05, 0.075, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65, 0.78, 0.9, 0.62)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.22)
+shadow_size = 4
+
+[node name="Main" type="Node" unique_id=1704199369]
+script = ExtResource("1_h2yge")
+MobScene = ExtResource("2_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=145557200 groups=["quality_directional_light"]]
+transform = Transform3D(0.81915206, 0.4698463, -0.32898992, 0, 0.57357645, 0.81915206, 0.57357645, -0.6710101, 0.4698463, 0, 17, 0)
+light_color = Color(0.94, 0.98, 1, 1)
+light_energy = 0.88
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 0.5
+
+[node name="Player" parent="." unique_id=115122462 instance=ExtResource("1_ig7tw")]
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1234942438]
+transform = Transform3D(1, 0, 0, 0, 0.8480481, 0.52991927, 0, -0.52991927, 0.8480481, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=650836876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23)
+projection = 1
+size = 21.0
+far = 180.0
+
+[node name="UserInterface" type="Control" parent="." unique_id=1523575604]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_pfwfe")
+
+[node name="MomentumOverlay" type="Control" parent="UserInterface" unique_id=385588535]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_momentum_overlay")
+
+[node name="ScoreLabel" type="PanelContainer" parent="UserInterface" unique_id=1779858569]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 250.0
+offset_bottom = 80.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_score")
+script = ExtResource("5_lquwl")
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/ScoreLabel" unique_id=1921817831]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 6
+
+[node name="Values" type="HBoxContainer" parent="UserInterface/ScoreLabel/Margin" unique_id=730699447]
+layout_mode = 2
+theme_override_constants/separation = 9
+alignment = 1
+
+[node name="Score" type="VBoxContainer" parent="UserInterface/ScoreLabel/Margin/Values" unique_id=1112758066]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="Title" type="Label" parent="UserInterface/ScoreLabel/Margin/Values/Score" unique_id=2130361748]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76, 0.8, 0.86, 1)
+theme_override_font_sizes/font_size = 10
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="UserInterface/ScoreLabel/Margin/Values/Score" unique_id=1928508078]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="Divider" type="VSeparator" parent="UserInterface/ScoreLabel/Margin/Values" unique_id=1782017909]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_divider")
+
+[node name="Best" type="VBoxContainer" parent="UserInterface/ScoreLabel/Margin/Values" unique_id=868928396]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="Title" type="Label" parent="UserInterface/ScoreLabel/Margin/Values/Best" unique_id=880668553]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.16, 1)
+theme_override_font_sizes/font_size = 10
+text = "BEST"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="UserInterface/ScoreLabel/Margin/Values/Best" unique_id=1823419025]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.64, 0.28, 1)
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+
+[node name="HealthDisplay" type="PanelContainer" parent="UserInterface" unique_id=782416551]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -84.0
+offset_right = 170.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_score")
+script = ExtResource("12_health_hud")
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/HealthDisplay" unique_id=2084645960]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 7
+
+[node name="Content" type="VBoxContainer" parent="UserInterface/HealthDisplay/Margin" unique_id=555726025]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="HealthRow" type="HBoxContainer" parent="UserInterface/HealthDisplay/Margin/Content" unique_id=571697281]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Health" type="Label" parent="UserInterface/HealthDisplay/Margin/Content/HealthRow" unique_id=1766776009]
+custom_minimum_size = Vector2(98, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "HP   100 / 100"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="UserInterface/HealthDisplay/Margin/Content/HealthRow" unique_id=2074369455]
+custom_minimum_size = Vector2(150, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+show_percentage = false
+
+[node name="RecoveryReadout" type="HBoxContainer" parent="UserInterface/HealthDisplay/Margin/Content" unique_id=1812484224]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HealthChip" type="PanelContainer" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout" unique_id=2131621183]
+custom_minimum_size = Vector2(106, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ChipRow" type="HBoxContainer" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/HealthChip" unique_id=1644067851]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Title" type="Label" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/HealthChip/ChipRow" unique_id=1928202071]
+layout_mode = 2
+text = "HP"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/HealthChip/ChipRow" unique_id=1596185099]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ContractSlot" type="Control" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout" unique_id=1090481516]
+custom_minimum_size = Vector2(0, 30)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ContractFrame" type="PanelContainer" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/ContractSlot" unique_id=681272349]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Contract" type="RichTextLabel" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/ContractSlot/ContractFrame" unique_id=1657634518]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "SYSTEM STABLE"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NitroChip" type="PanelContainer" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout" unique_id=314422501]
+custom_minimum_size = Vector2(106, 30)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ChipRow" type="HBoxContainer" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/NitroChip" unique_id=1148774385]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Title" type="Label" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/NitroChip/ChipRow" unique_id=262010798]
+layout_mode = 2
+text = "NITRO"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UserInterface/HealthDisplay/Margin/Content/RecoveryReadout/NitroChip/ChipRow" unique_id=797884892]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LocationBanner" type="PanelContainer" parent="UserInterface" unique_id=1437311469]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 245.0
+offset_top = 18.0
+offset_right = -245.0
+offset_bottom = 59.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_location")
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/LocationBanner" unique_id=376911899]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="UserInterface/LocationBanner/Margin" unique_id=824631427]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "SUNSET FIELD"
+horizontal_alignment = 1
+
+[node name="MomentumDisplay" type="PanelContainer" parent="UserInterface" unique_id=79855842]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -214.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = 101.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_momentum")
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/MomentumDisplay" unique_id=1521522374]
+layout_mode = 2
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 6
+
+[node name="Content" type="VBoxContainer" parent="UserInterface/MomentumDisplay/Margin" unique_id=1928981326]
+layout_mode = 2
+theme_override_constants/separation = -2
+alignment = 1
+
+[node name="State" type="Label" parent="UserInterface/MomentumDisplay/Margin/Content" unique_id=1817949630]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "BUILD TEMPO"
+horizontal_alignment = 1
+
+[node name="Multiplier" type="Label" parent="UserInterface/MomentumDisplay/Margin/Content" unique_id=95012578]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "x1"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="UserInterface/MomentumDisplay/Margin/Content" unique_id=963532217]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.87, 0.91, 1)
+theme_override_font_sizes/font_size = 9
+text = "KEEP MOVING UP"
+horizontal_alignment = 1
+
+[node name="NitroDisplay" type="PanelContainer" parent="UserInterface" unique_id=796990846]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -39.0
+offset_right = 170.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_momentum")
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/NitroDisplay" unique_id=1229879344]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 7
+
+[node name="Content" type="HBoxContainer" parent="UserInterface/NitroDisplay/Margin" unique_id=863239645]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="State" type="Label" parent="UserInterface/NitroDisplay/Margin/Content" unique_id=349982203]
+custom_minimum_size = Vector2(76, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "RIFT STEP"
+vertical_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="UserInterface/NitroDisplay/Margin/Content" unique_id=1863225887]
+custom_minimum_size = Vector2(150, 15)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 42.0
+show_percentage = false
+
+[node name="MobileControls" type="Control" parent="UserInterface" unique_id=1373219488]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_mobile")
+
+[node name="DesktopDisplay" parent="UserInterface" unique_id=2066261368 instance=ExtResource("9_82xsv")]
+layout_mode = 1
+
+[node name="Retry" parent="UserInterface" unique_id=636265405 instance=ExtResource("10_getpj")]
+layout_mode = 1
+
+[node name="RunOverlays" type="Control" parent="UserInterface" unique_id=1499331380]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="RunPauseMenu" type="Control" parent="UserInterface/RunOverlays" unique_id=1249744760]
+process_mode = 3
+z_index = 210
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("13_ryguw")
+
+[node name="MenuButton" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu" unique_id=70376332]
+custom_minimum_size = Vector2(46, 42)
+layout_mode = 0
+focus_mode = 0
+tooltip_text = "MENU"
+script = ExtResource("14_1u8w0")
+
+[node name="Overlay" type="Control" parent="UserInterface/RunOverlays/RunPauseMenu" unique_id=637637313]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FocusVeil" type="ColorRect" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay" unique_id=2140758324]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PauseCard" type="PanelContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay" unique_id=948789057]
+layout_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard" unique_id=427287925]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 26
+
+[node name="Content" type="VBoxContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin" unique_id=1557280768]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Eyebrow" type="Label" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=1626702213]
+modulate = Color(0.45, 0.76, 0.86, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "NO WAY DOWN"
+
+[node name="Heading" type="Label" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=410874029]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "RUN PAUSED"
+
+[node name="Gap" type="Control" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=1736116543]
+custom_minimum_size = Vector2(1, 10)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=1911999521]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "RETURN TO RUN"
+
+[node name="Settings" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=1972424068]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Refuge" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/PauseCard/Margin/Content" unique_id=1352475027]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "EXIT TO REFUGE"
+
+[node name="ConfirmCard" type="PanelContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay" unique_id=1696401652]
+visible = false
+layout_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard" unique_id=137009756]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 26
+
+[node name="Content" type="VBoxContainer" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin" unique_id=912399914]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Eyebrow" type="Label" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin/Content" unique_id=1823727863]
+modulate = Color(0.45, 0.76, 0.86, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "CURRENT RUN PROGRESS WILL END"
+
+[node name="Heading" type="Label" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin/Content" unique_id=1801000315]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "LEAVE THIS RUN?"
+
+[node name="Gap" type="Control" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin/Content" unique_id=2049834719]
+custom_minimum_size = Vector2(1, 10)
+layout_mode = 2
+
+[node name="ConfirmExit" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin/Content" unique_id=197559357]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "EXIT TO REFUGE"
+
+[node name="Cancel" type="Button" parent="UserInterface/RunOverlays/RunPauseMenu/Overlay/ConfirmCard/Margin/Content" unique_id=855345417]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "CANCEL"
+
+[node name="ArenaRewardOverlay" parent="UserInterface/RunOverlays" instance=ExtResource("14_d13ii")]
+layout_mode = 1
+
+[node name="RunProgressHud" parent="UserInterface/RunOverlays" unique_id=1395841639 instance=ExtResource("13_getpj")]
+layout_mode = 1
+
+[node name="VitalProjectionLink" type="Line2D" parent="UserInterface" unique_id=772814705]
+z_index = -1
+width = 1.65
+default_color = Color(0.32, 0.9, 1, 0.62)
+antialiased = true
+
+[node name="RecoveryProjectionLink" type="Line2D" parent="UserInterface" unique_id=1981164500]
+z_index = -1
+width = 1.2
+default_color = Color(1, 0.62, 0.18, 0.42)
+antialiased = true
+
+[node name="ScoreProjectionLink" type="Line2D" parent="UserInterface" unique_id=1349391121]
+visible = false
+z_index = -1
+width = 1.25
+default_color = Color(1, 0.48, 0.12, 0.42)
+antialiased = true
+
+[node name="MomentumProjectionLink" type="Line2D" parent="UserInterface" unique_id=351946755]
+visible = false
+z_index = -1
+width = 1.25
+default_color = Color(0.72, 0.94, 1, 0.42)
+antialiased = true
+
+[node name="RunSystems" type="Node" parent="." unique_id=345409754]
+
+[node name="EncounterDirector" type="Node" parent="RunSystems" unique_id=319461464]
+script = ExtResource("23_encounter")
+Settings = ExtResource("24_encounter_settings")
+
+[node name="MobTimer" type="Timer" parent="RunSystems/EncounterDirector" unique_id=830661033]
+one_shot = true
+autostart = true
+
+[node name="ArenaWaveTimer" type="Timer" parent="RunSystems/EncounterDirector" unique_id=909407881]
+one_shot = true
+
+[node name="CombatFeedbackDirector" type="Node" parent="RunSystems" unique_id=270055526]
+script = ExtResource("16_0odxb")
+
+[node name="PlayerJumpTrajectory" parent="RunSystems" unique_id=123281586 instance=ExtResource("15_82xsv")]
+
+[node name="RunHudDirector" type="Node" parent="RunSystems" unique_id=1135388246]
+script = ExtResource("18_a6jrf")
+
+[node name="RunVisualAtmosphere" type="Node3D" parent="RunSystems" unique_id=811038577]
+script = ExtResource("19_xuqvo")
+
+[node name="ProceduralWorld" type="Node3D" parent="RunSystems" unique_id=1158035452]
+script = ExtResource("20_qsp4k")
+GenerationSettings = ExtResource("20_ryguw")
+GenerationPipeline = 1
+ContentCatalog = ExtResource("25_world_catalog")
+
+[node name="AbyssPressureFront" type="Node3D" parent="RunSystems" unique_id=1361789967]
+script = ExtResource("21_kq58d")
+
+[node name="GroundVitals" parent="RunSystems" unique_id=144296406 instance=ExtResource("22_seu75")]
+
+[connection signal="Hit" from="Player" to="." method="OnPlayerHit"]

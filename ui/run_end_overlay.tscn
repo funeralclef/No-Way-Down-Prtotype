@@ -1,0 +1,255 @@
+[gd_scene format=3 uid="uid://khikfhp5i65t"]
+
+[ext_resource type="Shader" path="res://shaders/run_end_veil.gdshader" id="1_jromy"]
+[ext_resource type="Script" uid="uid://dgfdax72q75oe" path="res://RunEndOverlay.cs" id="2_emcyb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_emcyb"]
+shader = ExtResource("1_jromy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc1ub"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_so7y1"]
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.54, 0.76, 0.82, 0.16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_42gnn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs5mr"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(1, 0.52, 0.12, 0.035)
+border_width_bottom = 2
+border_color = Color(1, 0.58, 0.16, 0.72)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5eaj"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(1, 0.55, 0.16, 0.34)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fb2b1"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.55, 0.16, 0.08)
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3fo2"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(1, 0.55, 0.16, 0.04)
+border_width_bottom = 2
+border_color = Color(1, 0.55, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spsij"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_or117"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.34, 0.78, 0.92, 0.34)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bveg"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0.34, 0.78, 0.92, 0.08)
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_unfds"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0.34, 0.78, 0.92, 0.04)
+border_width_bottom = 2
+border_color = Color(0.34, 0.78, 0.92, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teqjk"]
+content_margin_left = 12.0
+content_margin_top = 7.0
+content_margin_right = 12.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="RunEndOverlay" type="ColorRect" unique_id=636265405]
+visible = false
+z_index = 120
+material = SubResource("ShaderMaterial_emcyb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_emcyb")
+
+[node name="Card" type="PanelContainer" parent="." unique_id=989552675]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -162.0
+offset_right = 210.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vc1ub")
+
+[node name="Margin" type="MarginContainer" parent="Card" unique_id=267623177]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="Card/Margin" unique_id=718951602]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="Card/Margin/Content" unique_id=395805249]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Card/Margin/Content" unique_id=564389801]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.8, 0.92, 0.86)
+theme_override_font_sizes/font_size = 13
+text = "THE CREEPS GOT YOU"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="Card/Margin/Content" unique_id=1225673170]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_so7y1")
+
+[node name="Results" type="HBoxContainer" parent="Card/Margin/Content" unique_id=1033493730]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Score" type="VBoxContainer" parent="Card/Margin/Content/Results" unique_id=235148984]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="Title" type="Label" parent="Card/Margin/Content/Results/Score" unique_id=384333997]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.73, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Card/Margin/Content/Results/Score" unique_id=1204325741]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 38
+text = "0"
+horizontal_alignment = 1
+
+[node name="Divider" type="VSeparator" parent="Card/Margin/Content/Results" unique_id=1798606907]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_42gnn")
+
+[node name="Best" type="VBoxContainer" parent="Card/Margin/Content/Results" unique_id=377694563]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+theme_override_constants/separation = -3
+
+[node name="Title" type="Label" parent="Card/Margin/Content/Results/Best" unique_id=1728410908]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.55, 0.16, 1)
+theme_override_font_sizes/font_size = 13
+text = "BEST"
+horizontal_alignment = 1
+
+[node name="Value" type="Label" parent="Card/Margin/Content/Results/Best" unique_id=1550889271]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.64, 0.28, 1)
+theme_override_font_sizes/font_size = 38
+text = "0"
+horizontal_alignment = 1
+
+[node name="RecordBadge" type="PanelContainer" parent="Card/Margin/Content" unique_id=1500049283]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vs5mr")
+
+[node name="Label" type="Label" parent="Card/Margin/Content/RecordBadge" unique_id=1100924442]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.64, 0.28, 1)
+theme_override_font_sizes/font_size = 13
+text = "NEW PERSONAL BEST!"
+horizontal_alignment = 1
+
+[node name="Actions" type="HBoxContainer" parent="Card/Margin/Content" unique_id=1658585285]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RetryRun" type="Button" parent="Card/Margin/Content/Actions" unique_id=2052905747]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../ReturnToRefuge")
+focus_neighbor_right = NodePath("../ReturnToRefuge")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_f5eaj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fb2b1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o3fo2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_spsij")
+text = "RETRY"
+
+[node name="ReturnToRefuge" type="Button" parent="Card/Margin/Content/Actions" unique_id=1915263448]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../RetryRun")
+focus_neighbor_right = NodePath("../RetryRun")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_or117")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0bveg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_unfds")
+theme_override_styles/focus = SubResource("StyleBoxFlat_teqjk")
+text = "REFUGE"
+
+[node name="Hint" type="Label" parent="Card/Margin/Content" unique_id=645535275]
+modulate = Color(0.72, 0.78, 0.84, 0.72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 12
+text = "PRESS ENTER TO PLAY AGAIN"
+horizontal_alignment = 1

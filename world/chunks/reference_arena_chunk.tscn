@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://WorldChunk.cs" id="1_chunk"]
+
+[sub_resource type="StandardMaterial3D" id="Material_arena"]
+albedo_color = Color(0.14, 0.18, 0.23, 1)
+metallic = 0.4
+roughness = 0.62
+
+[sub_resource type="CylinderMesh" id="Mesh_arena"]
+material = SubResource("Material_arena")
+top_radius = 27.0
+bottom_radius = 27.0
+height = 0.4
+radial_segments = 48
+
+[sub_resource type="CylinderShape3D" id="Shape_arena"]
+radius = 27.0
+height = 0.4
+
+[sub_resource type="BoxMesh" id="Mesh_bridge"]
+material = SubResource("Material_arena")
+size = Vector3(22, 0.4, 7)
+
+[sub_resource type="BoxShape3D" id="Shape_bridge"]
+size = Vector3(22, 0.4, 7)
+
+[node name="ReferenceArenaChunk" type="Node3D"]
+script = ExtResource("1_chunk")
+ContentId = "reference_arena"
+Kind = 2
+Theme = 1
+WidthClass = 3
+EntrySocket = 3
+ExitSocket = 3
+Tags = 60
+PlayableSize = Vector3(54, 8, 68)
+CameraViewSize = 38.0
+PressureSpeedMultiplier = 0.0
+
+[node name="Entry" type="Marker3D" parent="."]
+position = Vector3(0, 0, 34)
+
+[node name="Exit" type="Marker3D" parent="."]
+position = Vector3(0, 0, -34)
+
+[node name="PlayableBounds" type="Marker3D" parent="."]
+position = Vector3(0, 4, 0)
+
+[node name="ObstacleSlots" type="Node3D" parent="."]
+
+[node name="West" type="Marker3D" parent="ObstacleSlots"]
+position = Vector3(-9, 0, 0)
+
+[node name="East" type="Marker3D" parent="ObstacleSlots"]
+position = Vector3(9, 0, 0)
+
+[node name="EnemySpawnAreas" type="Node3D" parent="."]
+
+[node name="North" type="Marker3D" parent="EnemySpawnAreas"]
+position = Vector3(0, 1, -18)
+
+[node name="South" type="Marker3D" parent="EnemySpawnAreas"]
+position = Vector3(0, 1, 18)
+
+[node name="West" type="Marker3D" parent="EnemySpawnAreas"]
+position = Vector3(-18, 1, 0)
+
+[node name="East" type="Marker3D" parent="EnemySpawnAreas"]
+position = Vector3(18, 1, 0)
+
+[node name="Metadata" type="Node" parent="."]
+
+[node name="Camera" type="Node" parent="Metadata"]
+
+[node name="Pressure" type="Node" parent="Metadata"]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="ArenaVisual" type="MeshInstance3D" parent="Geometry"]
+position = Vector3(0, -0.2, 0)
+mesh = SubResource("Mesh_arena")
+
+[node name="ArenaCollision" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, -0.2, 0)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/ArenaCollision"]
+shape = SubResource("Shape_arena")
+
+[node name="EntryBridgeVisual" type="MeshInstance3D" parent="Geometry"]
+position = Vector3(0, -0.2, 30.5)
+mesh = SubResource("Mesh_bridge")
+
+[node name="EntryBridgeCollision" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, -0.2, 30.5)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/EntryBridgeCollision"]
+shape = SubResource("Shape_bridge")
+
+[node name="ExitBridgeVisual" type="MeshInstance3D" parent="Geometry"]
+position = Vector3(0, -0.2, -30.5)
+mesh = SubResource("Mesh_bridge")
+
+[node name="ExitBridgeCollision" type="StaticBody3D" parent="Geometry"]
+position = Vector3(0, -0.2, -30.5)
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/ExitBridgeCollision"]
+shape = SubResource("Shape_bridge")

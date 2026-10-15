@@ -1,0 +1,313 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://EnemyCreatureMotion.cs" id="motion"]
+
+[sub_resource type="StandardMaterial3D" id="mob_body"]
+resource_name = "mob_body"
+albedo_color = Color(0.24, 0.4, 0.74, 1)
+roughness = 0.48
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="accent"]
+resource_name = "accent"
+albedo_color = Color(0.58, 0.89, 1.0, 1)
+roughness = 0.48
+metallic = 0.04
+emission_enabled = true
+emission = Color(0.58, 0.89, 1.0, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="StandardMaterial3D" id="armor"]
+resource_name = "armor"
+albedo_color = Color(0.12, 0.16, 0.18, 1)
+roughness = 0.48
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="mob_eye"]
+resource_name = "mob_eye"
+albedo_color = Color(0.94, 0.96, 0.87, 1)
+roughness = 0.48
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="pupil"]
+resource_name = "pupil"
+albedo_color = Color(0.025, 0.05, 0.065, 1)
+roughness = 0.48
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="tooth"]
+resource_name = "tooth"
+albedo_color = Color(0.98, 0.92, 0.74, 1)
+roughness = 0.48
+metallic = 0.04
+
+[sub_resource type="StandardMaterial3D" id="glint"]
+resource_name = "glint"
+albedo_color = Color(1.0, 1.0, 1.0, 1)
+roughness = 0.48
+metallic = 0.04
+emission_enabled = true
+emission = Color(1.0, 1.0, 1.0, 1)
+emission_energy_multiplier = 0.4
+
+[sub_resource type="SphereMesh" id="m1"]
+material = SubResource("mob_body")
+radius = 0.73
+height = 1.46
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="m2"]
+material = SubResource("armor")
+radius = 0.46
+height = 0.92
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="m3"]
+material = SubResource("mob_eye")
+radius = 0.46
+height = 0.92
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="m4"]
+material = SubResource("pupil")
+radius = 0.24380000000000002
+height = 0.48760000000000003
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="m5"]
+material = SubResource("glint")
+radius = 0.059800000000000006
+height = 0.11960000000000001
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="m6"]
+material = SubResource("pupil")
+radius = 0.276
+height = 0.552
+radial_segments = 24
+rings = 12
+
+[sub_resource type="CylinderMesh" id="m7"]
+material = SubResource("tooth")
+top_radius = 0.015
+bottom_radius = 0.046000000000000006
+height = 0.11960000000000001
+radial_segments = 12
+
+[sub_resource type="SphereMesh" id="m8"]
+material = SubResource("tooth")
+radius = 0.49
+height = 0.98
+radial_segments = 24
+rings = 12
+
+[sub_resource type="PrismMesh" id="m9"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 1.1)
+
+[sub_resource type="PrismMesh" id="m10"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 0.94)
+
+[sub_resource type="PrismMesh" id="m11"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 0.78)
+
+[sub_resource type="SphereMesh" id="m12"]
+material = SubResource("glint")
+radius = 0.12
+height = 0.24
+radial_segments = 24
+rings = 12
+
+[sub_resource type="PrismMesh" id="m13"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 1.1)
+
+[sub_resource type="PrismMesh" id="m14"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 0.94)
+
+[sub_resource type="PrismMesh" id="m15"]
+material = SubResource("accent")
+size = Vector3(0.6, 0.14, 0.78)
+
+[sub_resource type="SphereMesh" id="m16"]
+material = SubResource("glint")
+radius = 0.12
+height = 0.24
+radial_segments = 24
+rings = 12
+
+[sub_resource type="CylinderMesh" id="m17"]
+material = SubResource("accent")
+top_radius = 0.015
+bottom_radius = 0.16
+height = 0.47000000000000003
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="m18"]
+material = SubResource("accent")
+top_radius = 0.015
+bottom_radius = 0.16
+height = 0.65
+radial_segments = 12
+
+[sub_resource type="CylinderMesh" id="m19"]
+material = SubResource("accent")
+top_radius = 0.015
+bottom_radius = 0.16
+height = 0.47000000000000003
+radial_segments = 12
+
+[sub_resource type="PrismMesh" id="m20"]
+material = SubResource("armor")
+size = Vector3(0.8, 0.1, 0.95)
+
+[node name="Creature" type="Node3D"]
+script = ExtResource("motion")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.83, 0)
+scale = Vector3(0.95, 0.96, 1.1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m1")
+
+[node name="Eyes" type="Node3D" parent="."]
+position = Vector3(0, 0.94, -0.73)
+rotation_degrees = Vector3(30, 0, 0)
+
+[node name="Socket" type="MeshInstance3D" parent="Eyes"]
+position = Vector3(0, 0, 0)
+scale = Vector3(1.13, 1.1, 0.3)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m2")
+
+[node name="Blink" type="Node3D" parent="Eyes"]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="Sclera" type="MeshInstance3D" parent="Eyes/Blink"]
+position = Vector3(0, 0, -0.075)
+scale = Vector3(1, 1, 0.3)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m3")
+
+[node name="Pupil" type="MeshInstance3D" parent="Eyes/Blink"]
+position = Vector3(0, 0.005, -0.19)
+scale = Vector3(0.67, 1.15, 0.22)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m4")
+
+[node name="Glint" type="MeshInstance3D" parent="Eyes/Blink"]
+position = Vector3(-0.0874, 0.1058, -0.245)
+scale = Vector3(1, 1, 0.28)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m5")
+
+[node name="Mouth" type="MeshInstance3D" parent="Eyes"]
+position = Vector3(0, -0.525, -0.035)
+scale = Vector3(1, 0.3, 0.25)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m6")
+
+[node name="Fang0" type="MeshInstance3D" parent="Eyes"]
+position = Vector3(0, -0.53, -0.105)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(180, 0, 0)
+mesh = SubResource("m7")
+
+[node name="SilkBelly" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.38, -0.14)
+scale = Vector3(0.9, 0.7, 0.9)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m8")
+
+[node name="LeftAppendage" type="Node3D" parent="."]
+position = Vector3(-0.57, 0.92, 0.12)
+rotation_degrees = Vector3(0, 18, -9)
+
+[node name="GlassWing0" type="MeshInstance3D" parent="LeftAppendage"]
+position = Vector3(-0.26, 0, 0.15)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m9")
+
+[node name="GlassWing1" type="MeshInstance3D" parent="LeftAppendage"]
+position = Vector3(-0.49, 0, 0.33)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, -16, 0)
+mesh = SubResource("m10")
+
+[node name="GlassWing2" type="MeshInstance3D" parent="LeftAppendage"]
+position = Vector3(-0.72, 0, 0.51)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, -32, 0)
+mesh = SubResource("m11")
+
+[node name="DreamPearl" type="MeshInstance3D" parent="LeftAppendage"]
+position = Vector3(-0.84, 0.02, 0.53)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m12")
+
+[node name="RightAppendage" type="Node3D" parent="."]
+position = Vector3(0.57, 0.92, 0.12)
+rotation_degrees = Vector3(0, -18, 9)
+
+[node name="GlassWing0" type="MeshInstance3D" parent="RightAppendage"]
+position = Vector3(0.26, 0, 0.15)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m13")
+
+[node name="GlassWing1" type="MeshInstance3D" parent="RightAppendage"]
+position = Vector3(0.49, 0, 0.33)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 16, 0)
+mesh = SubResource("m14")
+
+[node name="GlassWing2" type="MeshInstance3D" parent="RightAppendage"]
+position = Vector3(0.72, 0, 0.51)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 32, 0)
+mesh = SubResource("m15")
+
+[node name="DreamPearl" type="MeshInstance3D" parent="RightAppendage"]
+position = Vector3(0.84, 0.02, 0.53)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m16")
+
+[node name="CrystalCrown0" type="MeshInstance3D" parent="."]
+position = Vector3(-0.32, 1.68, 0.08)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 20)
+mesh = SubResource("m17")
+
+[node name="CrystalCrown1" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.68, 0.08)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m18")
+
+[node name="CrystalCrown2" type="MeshInstance3D" parent="."]
+position = Vector3(0.32, 1.68, 0.08)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, -20)
+mesh = SubResource("m19")
+
+[node name="TailGroup" type="Node3D" parent="."]
+position = Vector3(0, 0.64, 0.72)
+rotation_degrees = Vector3(0, 0, 0)
+
+[node name="SilkTail" type="MeshInstance3D" parent="TailGroup"]
+position = Vector3(0, 0, 0.39)
+scale = Vector3(1, 1, 1)
+rotation_degrees = Vector3(0, 0, 0)
+mesh = SubResource("m20")

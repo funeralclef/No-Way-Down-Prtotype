@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwgxgvhij3gfx"]
+
+[ext_resource type="AudioStream" uid="uid://dxkls2u216ns7" path="res://Music/PATHTRAVOR ogg/PATHTRAVOR.ogg" id="1_fvyft"]
+[ext_resource type="Script" path="res://MusicPlayer.cs" id="2_music"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" unique_id=1299601803]
+stream = ExtResource("1_fvyft")
+script = ExtResource("2_music")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WorldContentCatalog" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://WorldContentCatalog.cs" id="1_catalog"]
+[ext_resource type="Script" path="res://WorldChunkDefinition.cs" id="2_chunk_type"]
+[ext_resource type="Script" path="res://WorldObstacleDefinition.cs" id="3_obstacle_type"]
+[ext_resource type="Resource" path="res://world/content/reference_travel.tres" id="4_travel"]
+[ext_resource type="Resource" path="res://world/content/reference_connector.tres" id="5_connector"]
+[ext_resource type="Resource" path="res://world/content/reference_arena.tres" id="6_arena"]
+[ext_resource type="Resource" path="res://world/content/reference_barrier.tres" id="7_barrier"]
+[ext_resource type="Resource" path="res://world/content/reference_exit_connector.tres" id="8_exit_connector"]
+
+[resource]
+script = ExtResource("1_catalog")
+Chunks = Array[ExtResource("2_chunk_type")]([ExtResource("4_travel"), ExtResource("5_connector"), ExtResource("6_arena"), ExtResource("8_exit_connector")])
+Obstacles = Array[ExtResource("3_obstacle_type")]([ExtResource("7_barrier")])

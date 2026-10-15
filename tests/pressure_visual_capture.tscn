@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://main.tscn" id="1_main"]
+[ext_resource type="Script" path="res://tests/PressureVisualCaptureDriver.cs" id="2_driver"]
+
+[node name="PressureVisualCapture" instance=ExtResource("1_main")]
+
+[node name="CaptureDriver" type="Node" parent="."]
+script = ExtResource("2_driver")

@@ -1,0 +1,392 @@
+[gd_scene format=3 uid="uid://cb4siohxehplk"]
+
+[ext_resource type="Script" path="res://RefugeInterface.cs" id="1_view"]
+[ext_resource type="FontFile" uid="uid://cyxhh7ddkn62q" path="res://fonts/Montserrat-Medium.ttf" id="2_font"]
+[ext_resource type="Shader" path="res://shaders/refuge_focus_veil.gdshader" id="3_veil"]
+
+[sub_resource type="Theme" id="Theme_refuge"]
+default_font = ExtResource("2_font")
+default_font_size = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_veil"]
+shader = ExtResource("3_veil")
+shader_parameter/darkness = 0.7
+shader_parameter/blur_level = 2.8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_station_panel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_marker_clear"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_action_pressed"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(1, 0.55, 0.15, 0.92)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_action_quiet_hover"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.72, 0.82, 0.87, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_action_primary"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(1, 0.55, 0.15, 0.3864)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_action_hover"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(1, 0.55, 0.15, 0.92)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_orange_active"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 2
+border_color = Color(1, 0.62, 0.2, 0.96)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_station_hover"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.36, 0.9, 1, 0.72)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_system_hover"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.48, 0.78, 0.92, 0.88)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_mobile_hover"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.48, 0.9, 1, 0.62)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_mobile_focus"]
+content_margin_left = 6.0
+content_margin_top = 5.0
+content_margin_right = 6.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0)
+border_width_bottom = 1
+border_color = Color(0.48, 0.9, 1, 0.5)
+
+[node name="RefugeInterface" type="Control" unique_id=637478445]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_refuge")
+script = ExtResource("1_view")
+
+[node name="HubFocusVeil" type="ColorRect" parent="." unique_id=176992018]
+material = SubResource("ShaderMaterial_veil")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StationPanel" type="PanelContainer" parent="." unique_id=878928953]
+visible = false
+clip_contents = true
+layout_mode = 0
+offset_right = 560.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("StyleBox_station_panel")
+
+[node name="StationScroll" type="ScrollContainer" parent="StationPanel" unique_id=983524168]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="StationMargin" type="MarginContainer" parent="StationPanel/StationScroll" unique_id=1196716741]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 19
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="StationContent" type="VBoxContainer" parent="StationPanel/StationScroll/StationMargin" unique_id=1027268803]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="StationEyebrow" type="Label" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=2034663711]
+modulate = Color(0.46, 0.86, 1, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="StationTitle" type="Label" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=386727581]
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+
+[node name="StationDescription" type="Label" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=432788301]
+modulate = Color(0.72, 0.77, 0.84, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=303951221]
+custom_minimum_size = Vector2(1, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SelectionName" type="Label" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=2053295962]
+modulate = Color(1, 0.66, 0.2, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+
+[node name="SelectionDetail" type="Label" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=1662160286]
+modulate = Color(0.62, 0.7, 0.8, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="StationPanel/StationScroll/StationMargin/StationContent" unique_id=1547661397]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Previous" type="Button" parent="StationPanel/StationScroll/StationMargin/StationContent/Actions" unique_id=1264074175]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.72, 0.82, 0.87, 0.9)
+theme_override_colors/font_focus_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_pressed_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_action_pressed")
+theme_override_styles/hover = SubResource("StyleBox_action_quiet_hover")
+theme_override_styles/focus = SubResource("StyleBox_action_pressed")
+
+[node name="Primary" type="Button" parent="StationPanel/StationScroll/StationMargin/StationContent/Actions" unique_id=2067062343]
+custom_minimum_size = Vector2(130, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_focus_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_pressed_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBox_action_primary")
+theme_override_styles/pressed = SubResource("StyleBox_action_pressed")
+theme_override_styles/hover = SubResource("StyleBox_action_hover")
+theme_override_styles/focus = SubResource("StyleBox_action_pressed")
+text = "APPLY"
+
+[node name="Next" type="Button" parent="StationPanel/StationScroll/StationMargin/StationContent/Actions" unique_id=61982062]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.72, 0.82, 0.87, 0.9)
+theme_override_colors/font_focus_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_pressed_color = Color(1, 0.55, 0.15, 0.92)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_action_pressed")
+theme_override_styles/hover = SubResource("StyleBox_action_quiet_hover")
+theme_override_styles/focus = SubResource("StyleBox_action_pressed")
+
+[node name="WorldNavigation" type="Control" parent="." unique_id=574557742]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Wardrobe" type="Button" parent="WorldNavigation" unique_id=1485379487]
+visible = false
+custom_minimum_size = Vector2(112, 42)
+layout_mode = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_station_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+text = "WARDROBE"
+
+[node name="Refuge" type="Button" parent="WorldNavigation" unique_id=722247670]
+visible = false
+custom_minimum_size = Vector2(112, 42)
+layout_mode = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_station_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+text = "REFUGE"
+
+[node name="Loadout" type="Button" parent="WorldNavigation" unique_id=2142689076]
+visible = false
+custom_minimum_size = Vector2(112, 42)
+layout_mode = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_station_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+text = "LOADOUT"
+
+[node name="Descent" type="Button" parent="WorldNavigation" unique_id=2105288873]
+visible = false
+custom_minimum_size = Vector2(112, 42)
+layout_mode = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_station_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+text = "DESCENT"
+
+[node name="Settings" type="Button" parent="WorldNavigation" unique_id=1549484068]
+visible = false
+custom_minimum_size = Vector2(42, 38)
+layout_mode = 0
+tooltip_text = "SETTINGS"
+focus_mode = 0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_system_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+
+[node name="Info" type="Button" parent="WorldNavigation"]
+visible = false
+custom_minimum_size = Vector2(42, 38)
+layout_mode = 0
+tooltip_text = "FIELD GUIDE · Controls, builds & movement
+F1 · Controller X"
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_system_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+
+[node name="ToggleInterface" type="Button" parent="WorldNavigation" unique_id=1754093463]
+visible = false
+custom_minimum_size = Vector2(46, 38)
+layout_mode = 0
+tooltip_text = "HIDE INTERFACE · H / Y"
+focus_mode = 0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_system_hover")
+theme_override_styles/focus = SubResource("StyleBox_orange_active")
+
+[node name="MobilePreviousStation" type="Button" parent="." unique_id=1102015832]
+visible = false
+z_index = 28
+layout_mode = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_focus_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_pressed_color = Color(1, 0.58, 0.16, 1)
+theme_override_colors/font_hover_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.58, 0.16, 1)
+theme_override_colors/font_disabled_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_mobile_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/focus = SubResource("StyleBox_mobile_focus")
+
+[node name="MobileNextStation" type="Button" parent="." unique_id=414020689]
+visible = false
+z_index = 28
+layout_mode = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_focus_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_pressed_color = Color(1, 0.58, 0.16, 1)
+theme_override_colors/font_hover_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.58, 0.16, 1)
+theme_override_colors/font_disabled_color = Color(0.78, 0.93, 0.96, 0.96)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBox_marker_clear")
+theme_override_styles/pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/hover = SubResource("StyleBox_mobile_hover")
+theme_override_styles/hover_pressed = SubResource("StyleBox_orange_active")
+theme_override_styles/focus = SubResource("StyleBox_mobile_focus")
+
+[node name="LowerLetterbox" type="ColorRect" parent="." unique_id=1151332062]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.62)
+
+[node name="Fade" type="ColorRect" parent="." unique_id=537167944]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.005, 0.009, 0.018, 0)
+
+[node name="SettingsHost" type="Control" parent="." unique_id=1083845539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

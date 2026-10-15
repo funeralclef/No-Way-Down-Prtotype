@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://WorldObstacle.cs" id="1_obstacle"]
+
+[sub_resource type="StandardMaterial3D" id="Material_barrier"]
+resource_local_to_scene = true
+albedo_color = Color(0.9, 0.34, 0.08, 1)
+metallic = 0.35
+roughness = 0.42
+
+[sub_resource type="BoxMesh" id="Mesh_barrier"]
+size = Vector3(4, 1.5, 1.2)
+
+[sub_resource type="BoxShape3D" id="Shape_barrier"]
+size = Vector3(4, 1.5, 1.2)
+
+[node name="ReferenceBarrier" type="Node3D"]
+script = ExtResource("1_obstacle")
+ContentId = "reference_barrier"
+Theme = 1
+Footprint = 1
+Tags = 3
+FootprintSize = Vector3(4, 1.5, 1.2)
+MutableVisualPath = NodePath("Visual")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.75, 0)
+material_override = SubResource("Material_barrier")
+mesh = SubResource("Mesh_barrier")
+
+[node name="Collision" type="StaticBody3D" parent="."]
+position = Vector3(0, 0.75, 0)
+collision_layer = 8
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+shape = SubResource("Shape_barrier")

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b1aufyipi3706"]
+
+[ext_resource type="Script" uid="uid://btoyh201xmdrm" path="res://Refuge.cs" id="1_refuge"]
+[ext_resource type="PackedScene" uid="uid://cb4siohxehplk" path="res://ui/refuge_interface.tscn" id="2_interface"]
+
+[sub_resource type="Environment" id="Environment_q32ub"]
+background_mode = 1
+background_color = Color(0.38, 0.66, 0.8, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.76, 0.82, 0.84, 1)
+ambient_light_energy = 0.86
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.24
+glow_strength = 0.36
+glow_bloom = 0.025
+fog_enabled = true
+fog_light_color = Color(0.5, 0.72, 0.82, 1)
+fog_light_energy = 0.72
+fog_density = 0.0035
+fog_height_density = 0.035
+
+[node name="Refuge" type="Node3D" unique_id=1463570564]
+script = ExtResource("1_refuge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=813453664]
+environment = SubResource("Environment_q32ub")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=559890451]
+transform = Transform3D(0.9135454, 0.27215993, -0.3022642, 0, 0.7431448, 0.6691306, 0.40673664, -0.6112812, 0.67889655, 0, 0, 0)
+light_color = Color(0.95, 0.98, 1, 1)
+light_energy = 1.04
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="CinematicCamera" type="Camera3D" parent="." unique_id=698379873]
+current = true
+fov = 50.0
+near = 0.08
+far = 120.0
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Root" parent="Interface" instance=ExtResource("2_interface")]

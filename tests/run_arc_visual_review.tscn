@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://main.tscn" id="1_main"]
+[ext_resource type="Script" path="res://tests/RunArcVisualReview.cs" id="2_review"]
+
+[node name="RunArcVisualReview" instance=ExtResource("1_main")]
+
+[node name="VisualReviewDriver" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("2_review")

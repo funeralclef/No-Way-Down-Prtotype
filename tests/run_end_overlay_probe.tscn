@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://m3822o32alm"]
+
+[ext_resource type="Script" uid="uid://7dbvbpjrvm5l" path="res://tests/RunEndOverlayProbe.cs" id="1_jliq6"]
+
+[node name="RunEndOverlayProbe" type="Node" unique_id=1268094939]
+script = ExtResource("1_jliq6")

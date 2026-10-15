@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WorldChunkDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://WorldChunkDefinition.cs" id="1_definition"]
+[ext_resource type="PackedScene" path="res://world/chunks/reference_connector_chunk.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_definition")
+ContentId = "reference_connector"
+Scene = ExtResource("2_scene")
+Kind = 1
+Theme = 1
+WidthClass = 2
+EntrySocket = 2
+ExitSocket = 3
+AllowedPreviousKinds = 5
+AllowedNextKinds = 5
+Tags = 122
+MinimumChapter = 0
+BaseDifficulty = 1.25
+SelectionWeight = 1.0

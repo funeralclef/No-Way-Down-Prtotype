@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d22dd7ux25o4y"]
+
+[ext_resource type="Script" uid="uid://bwou8icjt2oab" path="res://PlayerJumpTrajectory.cs" id="1_tti87"]
+[ext_resource type="Shader" path="res://shaders/jump_trajectory_marker.gdshader" id="2_4r05e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_po5me"]
+render_priority = 0
+shader = ExtResource("2_4r05e")
+
+[sub_resource type="SphereMesh" id="SphereMesh_gjas1"]
+material = SubResource("ShaderMaterial_po5me")
+radius = 0.095
+height = 0.19
+radial_segments = 10
+rings = 5
+
+[sub_resource type="MultiMesh" id="MultiMesh_w3uuu"]
+resource_local_to_scene = true
+transform_format = 1
+use_custom_data = true
+mesh = SubResource("SphereMesh_gjas1")
+
+[node name="PlayerJumpTrajectory" type="Node3D" unique_id=123281586]
+script = ExtResource("1_tti87")
+
+[node name="TrajectoryMarkers" type="MultiMeshInstance3D" parent="." unique_id=561548018]
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_w3uuu")

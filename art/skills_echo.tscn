@@ -1,0 +1,6 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://mob.tscn" id="1"]
+[ext_resource type="Script" path="res://RunSkillTarget.cs" id="2"]
+[node name="EchoStep" instance=ExtResource("1")]
+script = ExtResource("2")
+scale = Vector3(1, 1, 1)

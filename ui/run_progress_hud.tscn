@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://k4j80ppvrhuj"]
+
+[ext_resource type="Script" uid="uid://dycbtkjob8qmt" path="res://RunProgressHud.cs" id="1_1oduh"]
+
+[node name="RunProgressHud" type="Control" unique_id=1395841639]
+z_index = 8
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1oduh")
+
+[node name="ProgressPercent" type="Label" parent="." unique_id=321746982]
+layout_mode = 0
+theme_override_colors/font_color = Color(1, 0.72, 0.79, 0.98)
+theme_override_font_sizes/font_size = 10
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1

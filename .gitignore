@@ -1,0 +1,76 @@
+# Godot-generated cache and import metadata
+/.godot/
+/.import/
+*.import
+
+# Local Godot export credentials
+/export_credentials.cfg
+
+# C# / .NET generated files
+/bin/
+/obj/
+/.mono/
+/packages/
+/TestResults/
+/coverage/
+*.trx
+*.coverage
+*.coveragexml
+
+# IDE and editor state
+/.vs/
+/.idea/
+/.vscode/
+/.fleet/
+*.suo
+*.user
+*.userprefs
+
+# Local agent and MCP configuration
+/.agents/
+/.codex/
+/.mcp.json
+/.aws/
+/.ssh/
+
+# Local environment files and secrets
+/.env
+/.env.*
+!/.env.example
+*.keystore
+*.jks
+*.pfx
+*.pem
+/android/build/
+
+# Python tooling cache
+__pycache__/
+*.py[cod]
+
+# Exported builds
+/build/
+/builds/
+/exports/
+/dist/
+*.pck
+*.apk
+*.aab
+*.app
+*.dmg
+*.exe
+
+# Logs, backups, and temporary files
+/logs/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.csproj.old*
+*.sln.old*
+*~
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini

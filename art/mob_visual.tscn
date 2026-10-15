@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c8id66q23uhfb"]
+
+[ext_resource type="Script" path="res://ModelVisualRoot.cs" id="1_contract"]
+[ext_resource type="PackedScene" path="res://art/enemies/springboard.tscn" id="2_model"]
+
+[node name="MobVisual" type="Node3D" unique_id=1633842232]
+script = ExtResource("1_contract")
+
+[node name="Model" parent="." unique_id=65887006 instance=ExtResource("2_model")]

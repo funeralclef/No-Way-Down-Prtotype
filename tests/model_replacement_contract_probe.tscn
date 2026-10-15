@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dysor3xiojwpc"]
+
+[ext_resource type="Script" uid="uid://bun0s6fsbrlec" path="res://tests/ModelReplacementContractProbe.cs" id="1_probe"]
+
+[node name="ModelReplacementContractProbe" type="Node3D" unique_id=954666048]
+script = ExtResource("1_probe")

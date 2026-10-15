@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://tests/WorldContentVisualReview.cs" id="1_review"]
+[ext_resource type="PackedScene" path="res://world/chunks/reference_travel_chunk.tscn" id="2_travel"]
+[ext_resource type="PackedScene" path="res://world/chunks/reference_connector_chunk.tscn" id="3_connector"]
+[ext_resource type="PackedScene" path="res://world/chunks/reference_arena_chunk.tscn" id="4_arena"]
+[ext_resource type="PackedScene" path="res://world/obstacles/reference_barrier.tscn" id="5_barrier"]
+[ext_resource type="PackedScene" path="res://world/chunks/reference_exit_connector_chunk.tscn" id="6_exit"]
+
+[sub_resource type="ProceduralSkyMaterial" id="SkyMaterial_review"]
+sky_top_color = Color(0.025, 0.045, 0.065, 1)
+sky_horizon_color = Color(0.16, 0.22, 0.27, 1)
+ground_bottom_color = Color(0.015, 0.02, 0.025, 1)
+ground_horizon_color = Color(0.12, 0.15, 0.18, 1)
+
+[sub_resource type="Sky" id="Sky_review"]
+sky_material = SubResource("SkyMaterial_review")
+
+[sub_resource type="Environment" id="Environment_review"]
+background_mode = 2
+sky = SubResource("Sky_review")
+ambient_light_source = 3
+ambient_light_color = Color(0.55, 0.7, 0.82, 1)
+ambient_light_energy = 0.65
+
+[node name="WorldContentVisualReview" type="Node3D"]
+script = ExtResource("1_review")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_review")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-52, -28, 0)
+light_color = Color(0.82, 0.92, 1, 1)
+light_energy = 1.25
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+fov = 48.0
+far = 320.0
+
+[node name="Travel" parent="." instance=ExtResource("2_travel")]
+
+[node name="Connector" parent="." instance=ExtResource("3_connector")]
+position = Vector3(0, 0, -29)
+
+[node name="Arena" parent="." instance=ExtResource("4_arena")]
+position = Vector3(0, 0, -72)
+
+[node name="Exit" parent="." instance=ExtResource("6_exit")]
+position = Vector3(0, 0, -115)
+
+[node name="Barrier" parent="." instance=ExtResource("5_barrier")]
+position = Vector3(0, 0, -4)

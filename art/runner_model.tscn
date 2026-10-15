@@ -1,0 +1,164 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://RunnerVisualMotion.cs" id="1_motion"]
+[ext_resource type="Shader" path="res://shaders/player_rim.gdshader" id="2_rim"]
+
+[sub_resource type="ShaderMaterial" id="Rim"]
+shader = ExtResource("2_rim")
+
+[sub_resource type="StandardMaterial3D" id="Body"]
+resource_local_to_scene = true
+resource_name = "body"
+next_pass = SubResource("Rim")
+albedo_color = Color(0.3, 0.55, 0.58, 1)
+metallic = 0.22
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Pearl"]
+albedo_color = Color(0.91, 0.94, 0.9, 1)
+next_pass = SubResource("Rim")
+metallic = 0.28
+roughness = 0.25
+
+[sub_resource type="StandardMaterial3D" id="Dark"]
+albedo_color = Color(0.025, 0.05, 0.065, 1)
+metallic = 0.45
+roughness = 0.22
+
+[sub_resource type="StandardMaterial3D" id="Light"]
+albedo_color = Color(0.27, 0.9, 0.92, 1)
+emission_enabled = true
+emission = Color(0.27, 0.9, 0.92, 1)
+emission_energy_multiplier = 0.8
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Gold"]
+albedo_color = Color(0.95, 0.63, 0.32, 1)
+metallic = 0.35
+roughness = 0.32
+
+[sub_resource type="SphereMesh" id="Shell"]
+material = SubResource("Body")
+radius = 0.76
+height = 1.4
+radial_segments = 32
+rings = 20
+
+[sub_resource type="SphereMesh" id="Crown"]
+material = SubResource("Pearl")
+radius = 0.72
+height = 0.78
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="EyeSocket"]
+material = SubResource("Dark")
+radius = 0.46
+height = 0.92
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="EyeWhite"]
+material = SubResource("Pearl")
+radius = 0.365
+height = 0.73
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereMesh" id="Pupil"]
+material = SubResource("Dark")
+radius = 0.18
+height = 0.38
+radial_segments = 24
+rings = 12
+
+[sub_resource type="SphereMesh" id="Highlight"]
+material = SubResource("Light")
+radius = 0.055
+height = 0.11
+radial_segments = 12
+rings = 8
+
+[sub_resource type="TorusMesh" id="EyeRing"]
+material = SubResource("Light")
+inner_radius = 0.405
+outer_radius = 0.44
+rings = 32
+ring_segments = 8
+
+[sub_resource type="PrismMesh" id="Fin"]
+material = SubResource("Pearl")
+size = Vector3(0.3, 0.62, 0.28)
+
+[sub_resource type="TorusMesh" id="Band"]
+material = SubResource("Gold")
+inner_radius = 0.62
+outer_radius = 0.68
+rings = 32
+ring_segments = 8
+
+[sub_resource type="SphereMesh" id="Foot"]
+material = SubResource("Dark")
+radius = 0.19
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[node name="RunnerModel" type="Node3D"]
+script = ExtResource("1_motion")
+
+[node name="Shell" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.12, 0)
+mesh = SubResource("Shell")
+
+[node name="Crown" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.47, 0.01)
+mesh = SubResource("Crown")
+
+[node name="EyeSocket" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.2, -0.585)
+scale = Vector3(1, 1, 0.4)
+mesh = SubResource("EyeSocket")
+
+[node name="EyeWhite" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.2, -0.72)
+scale = Vector3(1, 1, 0.34)
+mesh = SubResource("EyeWhite")
+
+[node name="Pupil" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.2, -0.825)
+scale = Vector3(1, 1, 0.26)
+mesh = SubResource("Pupil")
+
+[node name="EyeRing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.2, -0.733)
+rotation_degrees = Vector3(90, 0, 0)
+mesh = SubResource("EyeRing")
+
+[node name="Highlight" type="MeshInstance3D" parent="."]
+position = Vector3(-0.06, 0.29, -0.876)
+scale = Vector3(1, 1, 0.35)
+mesh = SubResource("Highlight")
+
+[node name="LeftFin" type="MeshInstance3D" parent="."]
+position = Vector3(-0.64, 0.66, 0.12)
+rotation_degrees = Vector3(-20, 0, 26)
+mesh = SubResource("Fin")
+
+[node name="RightFin" type="MeshInstance3D" parent="."]
+position = Vector3(0.64, 0.66, 0.12)
+rotation_degrees = Vector3(-20, 0, -26)
+mesh = SubResource("Fin")
+
+[node name="Band" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.22, 0)
+rotation_degrees = Vector3(0, 0, -8)
+mesh = SubResource("Band")
+
+[node name="LeftFoot" type="MeshInstance3D" parent="."]
+position = Vector3(-0.34, -0.53, -0.08)
+mesh = SubResource("Foot")
+
+[node name="RightFoot" type="MeshInstance3D" parent="."]
+position = Vector3(0.34, -0.53, -0.08)
+mesh = SubResource("Foot")
